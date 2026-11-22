@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>IFAC · Expedição Solar — app de realidade aumentada</title>
+<meta name="description" content="Explore o Sistema Solar em realidade aumentada ou em 3D. App gratuito do Circuito Ciências (IFAC) para o XI CONC&amp;T 2026.">
+<meta name="theme-color" content="#020818">
+<meta property="og:title" content="IFAC · Expedição Solar">
+<meta property="og:description" content="Explore o Sistema Solar em realidade aumentada ou em 3D. App gratuito para Android.">
+<meta property="og:image" content="assets/icone-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="apple-touch-icon" href="assets/icone-180.png">
+<style>
+  :root {
+    --fundo: #020818; --painel: rgba(6, 18, 34, 0.86); --borda: rgba(94, 200, 230, 0.35);
+    --texto: #e8f1f8; --suave: #a9bfcf; --ciano: #5ee6dc; --ambar: #ffb347; --ambar-escuro: #6b3a0c;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--texto); background: var(--fundo);
+    font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+    background-image: linear-gradient(rgba(2, 8, 24, 0.55), rgba(2, 8, 24, 0.92)), url("assets/ceu-via-lactea.jpg");
+    background-size: cover; background-attachment: fixed; background-position: center;
+  }
+  a { color: var(--ciano); }
+  img { max-width: 100%; height: auto; }
+  .conteudo { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  header.capa { display: flex; align-items: center; padding: 40px 0 24px; }
+  @media (min-width: 820px) { header.capa { min-height: 88vh; } }
+  .capa .grade { display: grid; gap: 28px; grid-template-columns: 1fr; align-items: center; }
+  @media (min-width: 820px) { .capa .grade { grid-template-columns: 1.15fr 0.85fr; } }
+  .marca { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .marca img { width: 76px; height: 76px; border-radius: 20px; box-shadow: 0 0 32px rgba(94, 230, 220, 0.35); }
+  .sobretitulo { color: var(--ciano); font-weight: 700; letter-spacing: 0.08em; font-size: 0.85rem; text-transform: uppercase; }
+  h1 { font-size: clamp(2.1rem, 6vw, 3.4rem); line-height: 1.1; margin: 4px 0 14px; }
+  .lead { font-size: 1.15rem; color: var(--suave); margin: 0 0 26px; }
+  .baixar {
+    display: inline-flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 14px;
+    background: linear-gradient(180deg, #ffbf5e, #f08d1d); color: #241200; font-weight: 800; font-size: 1.15rem;
+    text-decoration: none; box-shadow: 0 6px 24px rgba(240, 141, 29, 0.35); min-height: 56px;
+  }
+  .baixar:focus-visible, .botao:focus-visible { outline: 3px solid var(--ciano); outline-offset: 3px; }
+  .baixar svg { width: 24px; height: 24px; }
+  .detalhes-apk { margin-top: 12px; font-size: 0.9rem; color: var(--suave); }
+  .tela-capa img { width: 100%; border-radius: 16px; border: 1px solid var(--borda); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+  section { padding: 44px 0; }
+  h2 { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 18px; }
+  h2 small { display: block; color: var(--ciano); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .painel { background: var(--painel); border: 1px solid var(--borda); border-radius: 16px; padding: 22px; }
+  ol.passos { counter-reset: passo; list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+  ol.passos li { counter-increment: passo; position: relative; padding-left: 52px; }
+  ol.passos li::before {
+    content: counter(passo); position: absolute; left: 0; top: 0; width: 36px; height: 36px; border-radius: 50%;
+    background: var(--ambar-escuro); color: var(--ambar); font-weight: 800; display: grid; place-items: center; border: 1px solid var(--ambar);
+  }
+  .cartoes { display: grid; gap: 16px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .cartoes { grid-template-columns: 1fr 1fr; } }
+  .cartao h3 { margin: 0 0 8px; color: var(--ambar); font-size: 1.1rem; }
+  .cartao p, .cartao ul { margin: 0; color: var(--suave); }
+  .cartao ul { padding-left: 20px; }
+  .galeria { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 720px) { .galeria { grid-template-columns: 1fr 1fr; } }
+  figure { margin: 0; }
+  figure img { width: 100%; border-radius: 12px; border: 1px solid var(--borda); display: block; }
+  figcaption { font-size: 0.9rem; color: var(--suave); margin-top: 6px; }
+  .tabela { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.95rem; min-width: 560px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid rgba(94, 200, 230, 0.18); }
+  th { color: var(--ciano); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .escala { display: grid; gap: 10px; grid-template-columns: 1fr; margin-top: 18px; }
+  @media (min-width: 720px) { .escala { grid-template-columns: repeat(3, 1fr); } }
+  .escala div { background: rgba(255, 179, 71, 0.08); border: 1px solid rgba(255, 179, 71, 0.35); border-radius: 12px; padding: 14px; }
+  .escala strong { display: block; font-size: 1.4rem; color: var(--ambar); }
+  .nota { font-size: 0.88rem; color: var(--suave); margin-top: 12px; }
+  .aviso { border-left: 4px solid var(--ambar); padding: 10px 14px; background: rgba(255, 179, 71, 0.08); border-radius: 0 10px 10px 0; color: var(--texto); margin-top: 16px; }
+  .equipe dt { color: var(--ambar); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; margin-top: 12px; }
+  .equipe dd { margin: 2px 0 0; }
+  code.hash { word-break: break-all; font-size: 0.82rem; color: var(--suave); }
+  footer { padding: 36px 0 52px; color: var(--suave); font-size: 0.9rem; text-align: center; }
+</style>
+</head>
+<body>
+<header class="capa">
+  <div class="conteudo grade">
+    <div>
+      <div class="marca">
+        <img src="assets/icone-512.png" alt="Ícone do app: planeta azul com órbita luminosa">
+        <div>
+          <div class="sobretitulo">IFAC · Circuito Ciências</div>
+          <div class="sobretitulo" style="color: var(--ambar)">XI CONC&amp;T 2026</div>
+        </div>
+      </div>
+      <h1>Expedição Solar</h1>
+      <p class="lead">Explore o Sistema Solar em <strong>realidade aumentada</strong>: aponte o celular para o QR do estande e veja o Sol, os planetas, as luas e as naves flutuando à sua frente. Em casa, o mesmo passeio funciona em <strong>3D</strong>, sem câmera.</p>
+      <a class="baixar" href="IFAC-Expedicao-Solar-CONCT2026.apk" download>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 19h16"/></svg>
+        Baixar para Android
+      </a>
+      <div class="detalhes-apk">Gratuito · APK de 43 MB · versão CONC&amp;T2026 · Android 7.1 ou superior</div>
+    </div>
+    <div class="tela-capa">
+      <img src="assets/telas/mapa-posicoes-de-hoje.jpg" alt="Tela do app: o Sol no centro e os oito planetas nas órbitas, nas posições do dia" width="1200" height="540">
+    </div>
+  </div>
+</header>
+
+<main class="conteudo">
+  <section id="instalar">
+    <h2><small>Passo a passo</small>Como instalar</h2>
+    <div class="painel">
+      <ol class="passos">
+        <li>Toque em <strong>Baixar para Android</strong> e aguarde o download do arquivo <em>IFAC-Expedicao-Solar</em>.</li>
+        <li>Abra o arquivo baixado (na notificação ou na pasta <em>Downloads</em>).</li>
+        <li>Se o Android pedir, permita <strong>instalar apps desta fonte</strong> para o navegador e toque em <strong>Instalar</strong>. O app não vem da Play Store, por isso o aviso aparece.</li>
+        <li>Abra <strong>IFAC - Expedição Solar</strong>. Na primeira vez em realidade aumentada, o celular pode pedir para instalar o <em>Google Play Services for AR</em>.</li>
+      </ol>
+      <p class="aviso">Disponível só para Android. Quem tiver iPhone pode usar os aparelhos do estande.</p>
+    </div>
+  </section>
+
+  <section id="usar">
+    <h2><small>No estande e em casa</small>Como usar</h2>
+    <div class="cartoes">
+      <div class="painel cartao">
+        <h3>Realidade aumentada (no estande)</h3>
+        <p>Toque em <em>Iniciar em realidade aumentada</em> e aponte a câmera para o QR do estande. Os astros aparecem flutuando ali. Funciona em celulares compatíveis com o ARCore e precisa de <strong>ambiente bem iluminado</strong>; se estiver escuro, o app avisa.</p>
+      </div>
+      <div class="painel cartao">
+        <h3>Demonstração 3D (em qualquer lugar)</h3>
+        <p>Sem câmera e sem internet: o mesmo mapa, com o céu estrelado da Via Láctea ao fundo. Escolha entre <em>Posições de hoje</em> (órbitas calculadas para a data) e <em>Planetas alinhados</em>.</p>
+      </div>
+      <div class="painel cartao">
+        <h3>Gestos</h3>
+        <ul>
+          <li>Um toque num astro: identifica e abre o resumo.</li>
+          <li>Dois toques: aproxima o astro, com suas luas e naves.</li>
+          <li>Arrastar: move o mapa; pinça: amplia; dois dedos girando: gira.</li>
+          <li>Menu ☰: objetos, modos, órbitas, nomes, som e créditos.</li>
+        </ul>
+      </div>
+      <div class="painel cartao">
+        <h3>O que dá para explorar</h3>
+        <p>O Sol, os 8 planetas, 20 luas, os anéis de Saturno, a Estação Espacial Internacional, sondas em Marte e os conjuntos de satélites GPS e geoestacionários, cada um com ficha de dados e fontes.</p>
+      </div>
+    </div>
+    <div class="galeria" style="margin-top: 16px">
+      <figure><img src="assets/telas/planetas-alinhados.jpg" alt="Planetas alinhados: o Sol à esquerda e os planetas em arco até Netuno" width="1200" height="540" loading="lazy"><figcaption>Planetas alinhados: ordem e tamanhos comparáveis.</figcaption></figure>
+      <figure><img src="assets/telas/vista-aproximada-terra.jpg" alt="Vista aproximada da Terra com a Lua, a Estação Espacial e satélites" width="1200" height="540" loading="lazy"><figcaption>Vista aproximada: a Terra com a Lua, a Estação Espacial e satélites.</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="ciencia">
+    <h2><small>Ciência no app</small>O Sistema Solar em números</h2>
+    <div class="painel tabela">
+      <table>
+        <thead><tr><th>Planeta</th><th>Diâmetro</th><th>Distância média do Sol</th><th>Ano (uma volta no Sol)</th><th>Luas conhecidas</th></tr></thead>
+        <tbody>
+          <tr><td>Mercúrio</td><td class="num">4.879 km</td><td class="num">57,9 milhões de km</td><td class="num">88,0 dias</td><td class="num">0</td></tr>
+          <tr><td>Vênus</td><td class="num">12.104 km</td><td class="num">108,2 milhões de km</td><td class="num">224,7 dias</td><td class="num">0</td></tr>
+          <tr><td>Terra</td><td class="num">12.756 km</td><td class="num">149,6 milhões de km</td><td class="num">365,2 dias</td><td class="num">1</td></tr>
+          <tr><td>Marte</td><td class="num">6.792 km</td><td class="num">228,0 milhões de km</td><td class="num">687,0 dias</td><td class="num">2</td></tr>
+          <tr><td>Júpiter</td><td class="num">142.984 km</td><td class="num">778,5 milhões de km</td><td class="num">≈ 11,9 anos</td><td class="num">95</td></tr>
+          <tr><td>Saturno</td><td class="num">120.536 km</td><td class="num">1.432,0 milhões de km</td><td class="num">≈ 29,4 anos</td><td class="num">274</td></tr>
+          <tr><td>Urano</td><td class="num">51.118 km</td><td class="num">2.867,0 milhões de km</td><td class="num">≈ 83,7 anos</td><td class="num">28</td></tr>
+          <tr><td>Netuno</td><td class="num">49.528 km</td><td class="num">4.515,0 milhões de km</td><td class="num">≈ 163,7 anos</td><td class="num">16</td></tr>
+        </tbody>
+      </table>
+      <p class="nota">Fonte: NASA/NSSDC Planetary Fact Sheet (nssdc.gsfc.nasa.gov/planetary/factsheet). Contagens de luas mudam com novas descobertas.</p>
+    </div>
+
+    <h2 style="margin-top: 32px"><small>Por que o app usa escala ilustrativa</small>Se o Sol fosse uma bola de 1 metro…</h2>
+    <div class="escala">
+      <div><strong>9 mm</strong>seria o tamanho da Terra, a 107 metros do Sol.</div>
+      <div><strong>10 cm</strong>seria Júpiter, a 560 metros do Sol.</div>
+      <div><strong>3,2 km</strong>seria a distância até Netuno.</div>
+    </div>
+    <p class="nota">Cálculo com o diâmetro do Sol (1.391.400 km) e os valores da tabela. Em escala real, os planetas seriam pontos invisíveis na tela; por isso o app comprime distâncias e amplia tamanhos, e avisa que a escala é ilustrativa. Em <em>Posições de hoje</em>, as direções vêm do modelo kepleriano aproximado do NASA/JPL (ssd.jpl.nasa.gov/planets/approx_pos.html).</p>
+  </section>
+
+  <section id="privacidade">
+    <h2><small>Seus dados</small>Privacidade</h2>
+    <div class="painel">
+      <p style="margin-top: 0">A câmera é usada <strong>só no próprio celular</strong>, para ler o QR e posicionar os astros. O app não envia imagens, não coleta dados pessoais, não tem anúncios e funciona sem internet depois de instalado. As preferências (som, movimento reduzido, nomes e órbitas) ficam salvas apenas no aparelho.</p>
+    </div>
+  </section>
+
+  <section id="creditos">
+    <h2><small>Quem fez</small>Créditos</h2>
+    <div class="cartoes">
+      <div class="painel">
+        <dl class="equipe" style="margin: 0">
+          <dt>Equipe</dt><dd>Circuito Ciências</dd>
+          <dt>Coordenador Geral</dt><dd>Dr. Cleyton Souza</dd>
+          <dt>Coordenadora de Ações</dt><dd>Msc. Alcilene Balica</dd>
+          <dt>Coordenador de Desenvolvimento e Tecnologias aplicadas à Física</dt><dd>Esp. Mauricio Cunha</dd>
+          <dt>Roteiro e Desenvolvimento</dt><dd>Departamento de Pesquisa em Tecnologias</dd>
+          <dt>Desenvolvedor</dt><dd>Mauricio Cunha</dd>
+          <dt>Versão</dt><dd>CONC&amp;T2026</dd>
+        </dl>
+      </div>
+      <div class="painel cartao">
+        <h3>Dados e imagens</h3>
+        <ul>
+          <li>Dados: NASA/NSSDC, NASA/JPL Solar System Dynamics, ESA, GPS.gov e NASA Science (cada ficha do app cita a sua).</li>
+          <li>Texturas do Sol, dos planetas, da Lua e o céu com a Via Láctea: <a href="https://www.solarsystemscope.com/textures/">Solar System Scope</a>, licença <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+          <li>Leitura de QR: ZXing.Net (Apache 2.0). Motor: Unity, com ARCore do Google.</li>
+          <li>Efeitos sonoros, retículos, órbitas, naves e demais luas: gerados pelo próprio app.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="verificar">
+    <div class="painel">
+      <h3 style="margin-top: 0; color: var(--ciano)">Conferir o arquivo (opcional)</h3>
+      <p style="margin: 0 0 6px; color: var(--suave)">Código SHA-256 do APK publicado nesta página:</p>
+      <code class="hash">3f7d8eb4d27178b11444a6e0c26f05016a856bda55bdf21c148bda202ef991a6</code>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Instituto Federal do Acre · Circuito Ciências · XI Congresso Nacional de Ciência e Tecnologia (CONC&amp;T 2026)<br>
+  Escala, tamanhos e animações do app são ilustrativos.
+</footer>
+</body>
+</html>
