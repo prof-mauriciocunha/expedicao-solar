@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IFAC · Expedição Solar — app de realidade aumentada</title>
-<meta name="description" content="Explore o Sistema Solar em realidade aumentada ou em 3D. App gratuito do Circuito Ciências (IFAC) para o XI CONC&amp;T 2026.">
+<meta name="description" content="Explore o Sistema Solar em realidade aumentada ou em 3D. App gratuito do Planetário IFAC, do programa Circuito de Ciências (IFAC) para o XI CONC&amp;T 2026.">
 <meta name="theme-color" content="#020818">
 <meta property="og:title" content="IFAC · Expedição Solar">
 <meta property="og:description" content="Explore o Sistema Solar em realidade aumentada ou em 3D. App gratuito para Android.">
@@ -80,16 +80,32 @@
   .equipe dd { margin: 2px 0 0; }
   code.hash { word-break: break-all; font-size: 0.82rem; color: var(--suave); }
   footer { padding: 36px 0 52px; color: var(--suave); font-size: 0.9rem; text-align: center; }
+  .instituicoes { background: #f6f7fa; border-radius: 14px; padding: 14px 20px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 18px 34px; }
+  .instituicoes img { display: block; height: 64px; width: auto; }
+  .instituicoes img.planetario { height: 34px; }
+  @media (min-width: 820px) { .instituicoes img { height: 84px; } .instituicoes img.planetario { height: 42px; } }
+  .faixa-institucional { padding: 18px 0 0; }
+  .declaracao { color: var(--suave); font-size: 0.95rem; margin: 14px 0 0; }
 </style>
 </head>
 <body>
+<div class="faixa-institucional">
+  <div class="conteudo">
+    <div class="instituicoes" role="group" aria-label="Realização">
+      <img src="assets/institucional/logo_ifac.png" alt="Instituto Federal do Acre (IFAC)">
+      <img src="assets/institucional/logo_circuito.png" alt="Circuito de Ciências — IFAC, campi Rio Branco e Baixada do Sol">
+      <img class="planetario" src="assets/institucional/logo_planetario.png" alt="Planetário IFAC">
+    </div>
+  </div>
+</div>
+
 <header class="capa">
   <div class="conteudo grade">
     <div>
       <div class="marca">
         <img src="assets/icone-512.png" alt="Ícone do app: planeta azul com órbita luminosa">
         <div>
-          <div class="sobretitulo">IFAC · Circuito Ciências</div>
+          <div class="sobretitulo">Planetário IFAC · Circuito de Ciências</div>
           <div class="sobretitulo" style="color: var(--ambar)">XI CONC&amp;T 2026</div>
         </div>
       </div>
@@ -191,10 +207,19 @@
 
   <section id="creditos">
     <h2><small>Quem fez</small>Créditos</h2>
+    <div class="painel" style="margin-bottom: 18px">
+      <h3 style="margin-top: 0; color: var(--ciano)">Realização</h3>
+      <div class="instituicoes">
+        <img src="assets/institucional/logo_ifac.png" alt="Instituto Federal do Acre (IFAC)">
+        <img src="assets/institucional/logo_circuito.png" alt="Circuito de Ciências — IFAC, campi Rio Branco e Baixada do Sol">
+        <img class="planetario" src="assets/institucional/logo_planetario.png" alt="Planetário IFAC">
+      </div>
+      <p class="declaracao">A <strong>Expedição Solar</strong> é um produto educacional institucional do <strong>Planetário IFAC</strong>, projeto do programa <strong>Circuito de Ciências</strong> do <strong>Instituto Federal do Acre</strong>, para feiras, exposições, aulas e o desenvolvimento educacional dos estudantes do IFAC. Propriedade intelectual do Instituto Federal do Acre. Dados e texturas de terceiros mantêm as próprias licenças, indicadas abaixo.</p>
+    </div>
     <div class="cartoes">
       <div class="painel">
         <dl class="equipe" style="margin: 0">
-          <dt>Equipe</dt><dd>Circuito Ciências</dd>
+          <dt>Equipe</dt><dd>Circuito de Ciências</dd>
           <dt>Coordenador Geral</dt><dd>Dr. Cleyton Souza</dd>
           <dt>Coordenadora de Ações</dt><dd>Msc. Alcilene Balica</dd>
           <dt>Coordenador de Desenvolvimento e Tecnologias aplicadas à Física</dt><dd>Esp. Mauricio Cunha</dd>
@@ -219,13 +244,14 @@
     <div class="painel">
       <h3 style="margin-top: 0; color: var(--ciano)">Conferir o arquivo (opcional)</h3>
       <p style="margin: 0 0 6px; color: var(--suave)">Código SHA-256 do APK publicado nesta página:</p>
-      <code class="hash">f9e98ac664524f14377194fb43972775eb1c20c06437c1d6418e47d45e73408e</code>
+      <code class="hash">ef1dfe86e846ecaf0a1a3899edff63f7b2ea70b4602f9216aeaa8aed4f3770c1</code>
     </div>
   </section>
 </main>
 
 <footer>
-  Instituto Federal do Acre · Circuito Ciências · XI Congresso Nacional de Ciência e Tecnologia (CONC&amp;T 2026)<br>
+  © 2026 Instituto Federal do Acre (IFAC) · Circuito de Ciências · Planetário IFAC<br>
+  Produto educacional institucional, propriedade intelectual do IFAC · XI Congresso Nacional de Ciência e Tecnologia (CONC&amp;T 2026)<br>
   Escala, tamanhos e animações do app são ilustrativos.
 </footer>
 </body>
