@@ -1,8 +1,15 @@
 {
-  "versionCode": 6,
-  "versao": "CONC&T2026 · versão 6",
+  "versionCode": 7,
+  "versao": "CONC&T2026 · versão 7",
   "minimo": 1,
-  "apk": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-CONCT2026.apk?v=6",
+  "apk": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-CONCT2026.apk?v=7",
+  "sha": "72f3f26dd974e3679fa98f49867e82ea11004437c98ada184fcf2ad553aaf75c",
+  "apk64": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-arm64.apk?v=7",
+  "sha64": "8e05362bf32379e4717aac36b379a9ae16ed39fb0946f787f2405786c8fde58b",
+  "mb64": 44,
+  "apk32": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-armv7.apk?v=7",
+  "sha32": "54e1e0f4482f06b16f8890baa1c60ca9b16222a2183246599065f80e777fe98e",
+  "mb32": 43,
   "pagina": "https://prof-mauriciocunha.github.io/expedicao-solar/",
-  "novidades": "Identificação institucional e aviso de atualização dentro do app."
+  "novidades": "Conteúdo atualizado pelo site sem reinstalar e download menor nas próximas atualizações."
 }
