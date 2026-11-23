@@ -4,12 +4,12 @@
   "minimo": 1,
   "apk": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-CONCT2026.apk",
   "sha": "0c405b188200e427ce986a33597d99de17d5eefd9dd20c6f6c6de153a4a780bc",
-  "apk64": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-arm64.apk?v=7",
-  "sha64": "12d5a14836719825f4b2fe4233bbc2501dc6ff202d4be495e5a54d1144c7bd57",
+  "apk64": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-arm64.apk?v=7b",
+  "sha64": "8e05362bf32379e4717aac36b379a9ae16ed39fb0946f787f2405786c8fde58b",
   "mb64": 44,
-  "apk32": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-armv7.apk?v=7",
-  "sha32": "52c0f460ba277ae4277359ab5c20be494be3278bec1e5caf8ff95687683408ca",
+  "apk32": "https://prof-mauriciocunha.github.io/expedicao-solar/IFAC-Expedicao-Solar-armv7.apk?v=7b",
+  "sha32": "54e1e0f4482f06b16f8890baa1c60ca9b16222a2183246599065f80e777fe98e",
   "mb32": 43,
   "pagina": "https://prof-mauriciocunha.github.io/expedicao-solar/",
-  "novidades": "Teste da atualização por dentro do app."
+  "novidades": "Teste do download pelo navegador com APK menor."
 }
