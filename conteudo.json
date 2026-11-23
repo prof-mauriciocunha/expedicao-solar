@@ -1,0 +1,10 @@
+{
+  "revisao": 2,
+  "aviso": "Teste de conteúdo remoto: este aviso veio do site, sem reinstalar o app.",
+  "objetos": [
+    {
+      "id": "mars",
+      "resumo": "[Teste] Resumo de Marte trocado pelo conteúdo remoto."
+    }
+  ]
+}
